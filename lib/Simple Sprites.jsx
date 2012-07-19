@@ -38,14 +38,6 @@
   };
 
   dialogLayout = "dialog { " +
-    "marginGroup: Group { orientation: 'row', alignChildren: 'right', " +
-      "marginLabel: StaticText { text: 'Margin:' }, " +
-      "marginText: EditText { text: '0', characters: 5 } " +
-    "}, " +
-    "orientationPanel: Panel { orientation: 'row', alignChildren: 'left', text: 'Sprite Orientation', " +
-      "horizontalRadio: RadioButton { text: 'Horizontal', value: true }, " +
-      "verticalRadio: RadioButton { text: 'Vertical', value: false }" +
-    "}, " +
     "buttonGroup: Group { orientation: 'row', alignChildren: 'right', " +
       "okButton: Button { text: 'Ok', properties: { name: 'ok' } }, " +
       "cancelButton: Button { text: 'Cancel', properties: { name: 'cancel'} }" +
@@ -60,25 +52,15 @@
   inputFolder = Folder.selectDialog(settings.folderDialog);
 
   if (inputFolder === null) {
-    throw CONSTANTS.EXCEPTIONS.NO_INPUT;
+    return false;
   }
 
-  dlg = new Window(dialogLayout, settings.optionsDialog.title);
 
-  dlg.buttonGroup.okButton.onClick = function () {
-    if (isNaN(this.window.marginGroup.marginText.text)) {
-      alert(settings.optionsDialog.errors.marginNaN);
-      return false;
-    } else {
-      dlg.close(1);
-    }
-  }
 
-  dlg.center();
 
-  if (dlg.show() === 1) {
-    margin = parseInt(dlg.marginGroup.marginText.text);
-    orientation = (dlg.orientationPanel.horizontalRadio.value) ? 'horizontal' : 'vertical';
+  if (true) {
+    margin = 0;
+    orientation = 'vertical';
     
     inputDocuments = inputFolder.getFiles(settings.fileFilter);
 
